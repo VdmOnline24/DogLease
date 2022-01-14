@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block Title %}
+
+    Список ДА
+
+{% endblock Title %}
+
+{% block Body %}
+<figure>
+  <blockquote class="blockquote">
+    <p></p>
+  </blockquote>
+  <figcaption class="blockquote-footer">
+    <cite title="Source Title"></cite>
+  </figcaption>
+</figure>
+
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                <tr>
+                    <h1 class="display-6">Список договоров аренды</h1>
+
+                </tr>
+                <tr>
+                    <td class="">Код договора</td>
+                    <td class="">ВСП</td>
+                    <td class="">Платеж в месяц</td>
+                    <td class="">Сроком до</td>
+                    <td class="">Контрагент</td>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for zapis in page_obj %}
+                    <tr>
+                        <td class="col-md-2">
+                            <button type="button" class="btn btn-secondary">
+                                {{ zapis.dl_code }}
+                            </button>
+
+                        </td>
+                        <td class="col-md-3">
+                             {{ zapis.dl_vsp }}
+                        </td>
+                        <td class="col-md-3">
+                             {{ zapis.dl_prc_permnt|stringformat:"0" }}
+                        </td>
+                        <td class="col-md-3">
+                             {{ zapis.dl_dt_finish|date:"Y-m-d" }}
+
+                        </td>
+                        <td class="col-md-2">
+                            <span class="d-inline-block text-truncate" style="max-width: 120px;">
+                              {{ zapis.dl_clnt }}
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+<!-- Pagination Controls from the Django Doc -->
+
+<!-- Pagination controls from Getbootstrap.com -->
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-left">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+        {% endif %}
+        {% for page in page_obj.paginator.page_range %}
+            {% if page == page_obj.number %}
+                <li class="page-item active" aria-current="page">
+            {% else %}
+                <li class="page-item">
+            {% endif %}
+
+                    <a class="page-link" href="?page={{ page }}">
+                        {{ page }}
+                    </a>
+                </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+        {% endif %}
+      </ul>
+    </nav>
+    <!-- Форма -->
+
+
+
+{% endblock Body %}
