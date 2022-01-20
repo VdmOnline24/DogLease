@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% load humanize %}
+{% load my_filters %}
+
 
 {% block Title %}
 
@@ -7,54 +10,55 @@
 {% endblock Title %}
 
 {% block Body %}
-<figure>
-  <blockquote class="blockquote">
-    <p></p>
-  </blockquote>
-  <figcaption class="blockquote-footer">
-    <cite title="Source Title"></cite>
-  </figcaption>
-</figure>
+<p class="lead">
+  Список договоров аренды
+</p>
 
-    <div class="row">
-        <div class="col-md-8">
-            <table class="table">
+
+        <div class="table-responsive col-md-8">
+
+            <table class="table align-middle">
                 <thead>
-                <tr>
-                    <h1 class="display-6">Список договоров аренды</h1>
 
-                </tr>
-                <tr>
-                    <td class="">Код договора</td>
-                    <td class="">ВСП</td>
-                    <td class="">Платеж в месяц</td>
-                    <td class="">Сроком до</td>
-                    <td class="">Контрагент</td>
+                <tr class="h6 text-start">
+                    <td class=""></td>
+                    <td class="text-center">ВСП</td>
+                    <td class="text-end">МАП</td>
+                    <td class="text-center">Сроком</td>
+                    <td class="text-start">Контрагент</td>
 
                 </tr>
                 </thead>
                 <tbody>
                 {% for zapis in page_obj %}
-                    <tr>
-                        <td class="col-md-2">
-                            <button type="button" class="btn btn-secondary">
-                                {{ zapis.dl_code }}
+                    <tr class="{{ zapis.dl_dt_finish|days_color }}">
+                        <td class="col-md-1">
+                            <button type="button" class="btn btn-outline-primary justify-content-center">
+                                &#x2630;
                             </button>
 
                         </td>
-                        <td class="col-md-3">
+                        <td class="col-md-1 text-center">
+                            <small>
                              {{ zapis.dl_vsp }}
+                            </small>
                         </td>
-                        <td class="col-md-3">
-                             {{ zapis.dl_prc_permnt|stringformat:"0" }}
+                        <td class="col-md-2 text-end">
+                            <small>
+                                {{ zapis.dl_sqm|intcomma }}
+                            </small>
                         </td>
-                        <td class="col-md-3">
-                             {{ zapis.dl_dt_finish|date:"Y-m-d" }}
+                        <td class="col-md-2 text-center">
+                            <small>
+                                {{ zapis.dl_dt_finish|date:"Y-m-d" }}
 
+                            </small>
                         </td>
                         <td class="col-md-2">
-                            <span class="d-inline-block text-truncate" style="max-width: 120px;">
-                              {{ zapis.dl_clnt }}
+                            <span class="d-inline-block text-truncate" style="max-width: 160px;">
+                                <small>
+                                    {{ zapis.dl_clnt }}
+                                </small>
                             </span>
 
                         </td>
@@ -65,7 +69,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
+
 <!-- Pagination Controls from the Django Doc -->
 
 <!-- Pagination controls from Getbootstrap.com -->

@@ -1,7 +1,10 @@
+{#% load static %#}
+{% load humanize %}
 <!-- Задать сеансовые переменные -->
 {% url 'FirstPage' as url_app_home %}
 {% url 'DodsPage' as url_app_dogs %}
 {% url 'dgls:cars' as url_app_cars %}
+
 
 
 <!doctype html>
@@ -18,15 +21,12 @@
   </head>
   <body>
   <!-- Navbar Starts -->
-      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fa8c83;">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
 
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'FirstPage' %}">
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-yin-yang" viewBox="0 0 16 16">
-                  <path d="M9.167 4.5a1.167 1.167 0 1 1-2.334 0 1.167 1.167 0 0 1 2.334 0Z"></path>
-                  <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM1 8a7 7 0 0 1 7-7 3.5 3.5 0 1 1 0 7 3.5 3.5 0 1 0 0 7 7 7 0 0 1-7-7Zm7 4.667a1.167 1.167 0 1 1 0-2.334 1.167 1.167 0 0 1 0 2.334Z"></path>
-                </svg>
+            &#x18EF;
 
         </a>
 
