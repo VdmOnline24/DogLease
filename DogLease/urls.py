@@ -22,5 +22,6 @@ from dgls.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepagefunc, name= 'FirstPage'),
-    path('dogs/', DogsListView.as_view(), name='DodsPage'),
+    path('dogs/', DogsListView.as_view(), name='DogsPage'),
+    path('dogs/detail/<int:pk>/', DogDetailView.as_view(), name='dog_detail'),
 ]

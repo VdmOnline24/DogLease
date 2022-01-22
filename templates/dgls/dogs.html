@@ -10,6 +10,7 @@
 {% endblock Title %}
 
 {% block Body %}
+<br/>
 <p class="lead">
   Список договоров аренды
 </p>
@@ -20,7 +21,7 @@
             <table class="table align-middle">
                 <thead>
 
-                <tr class="h6 text-start">
+                <tr class="lead text-start">
                     <td class=""></td>
                     <td class="text-center">ВСП</td>
                     <td class="text-end">МАП</td>
@@ -29,13 +30,15 @@
 
                 </tr>
                 </thead>
-                <tbody>
+                <tbody class="fw-light">
                 {% for zapis in page_obj %}
                     <tr class="{{ zapis.dl_dt_finish|days_color }}">
                         <td class="col-md-1">
-                            <button type="button" class="btn btn-outline-primary justify-content-center">
-                                &#x2630;
-                            </button>
+                            <a href="{% url 'dog_detail' pk=zapis.id %}">
+                                <button type="button" class="btn btn-outline-primary justify-content-center">
+                                    &#x2630;
+                                </button>
+                            </a>
 
                         </td>
                         <td class="col-md-1 text-center">
@@ -43,7 +46,7 @@
                              {{ zapis.dl_vsp }}
                             </small>
                         </td>
-                        <td class="col-md-2 text-end">
+                        <td class="col-md-1 text-end">
                             <small>
                                 {{ zapis.dl_sqm|intcomma }}
                             </small>

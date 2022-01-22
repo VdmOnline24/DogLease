@@ -1,10 +1,10 @@
-{#% load static %#}
-{% load humanize %}
+
 <!-- Задать сеансовые переменные -->
 {% url 'FirstPage' as url_app_home %}
 {% url 'DodsPage' as url_app_dogs %}
 {% url 'dgls:cars' as url_app_cars %}
-
+{#% load static %#}
+{#% load humanize %#}
 
 
 <!doctype html>
@@ -36,7 +36,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav">
              <li class="nav-item">
-              <a class="nav-link {% if request.path == url_app_dogs %}active{% endif %}" aria-current="page" href="{{ url_app_dogs }}">
+              <a class="nav-link {% if request.path == url_app_dogs  %}active{% endif %}" aria-current="page" href="{% url 'DogsPage' %}">
                   Аренда
               </a>
             </li>
@@ -51,6 +51,7 @@
       </div>
     </nav>
   <!-- Navbar Ends -->
+  {{ url_app_dogs }}
   <!--start - Обработка сообщений -->
       {% if messages %}
           <div class="container">

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block Title %}
+
+    {{ object.dl_code }}
+
+{% endblock Title %}
+
+{% block Body %}
+    <br/>
+    <p class="lead">
+         Учетный номер: {{ object.dl_code }}
+    </p>
+
+        <div class="col-md fw-light">
+                <p class=""> <small class="text-muted">ВСП:</small> {{ object.dl_vsp }}</p>
+                <p> <small class="text-muted">Номер договора:</small> {{ object.dl_number }}</p>
+                <p> <small class="text-muted">Арендодатель:</small> {{ object.dl_clnt }}</p>
+                <p> <small class="text-muted">Адрес объекта:</small> {{ object.dl_address }}</p>
+                <p> <small class="text-muted">Площадь кв.м.:</small> {{ object.dl_sqm|intcomma }}</p>
+                <p> <small class="text-muted">Тип аренды:</small> {{ object.dl_type }}</p>
+                <p> <small class="text-muted">АП за кв.м.:</small> {{ object.dl_prc_persqm|intcomma }}</p>
+                <p> <small class="text-muted">МАП:</small> {{ object.dl_prc_permnt|intcomma }}</p>
+                <p> <small class="text-muted">Дата начала:</small> {{ object.dl_dt_start|date:"Y-m-d" }}</p>
+                <p> <small class="text-muted">Дата завершения:</small> {{ object.dl_dt_finish|date:"Y-m-d" }}</p>
+                <p> <small class="text-muted">Заметки:</small> {{ object.dl_note }}</p>
+        </div>
+
+    <hr>
+    <div class="dropdown">
+      <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        Выберите действие
+      </a>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <li><a class="dropdown-item" href="{% url 'DogsPage' %}">Назад к списку</a></li>
+        <li><a class="dropdown-item text-muted" href="{#% url 'trains:train_update' object.pk %#}">Изменить</a></li>
+        <li><a class="dropdown-item text-muted" href="{#% url 'trains:train_create' %#}">Создать</a></li>
+        <li><a class="dropdown-item bg-danger text-light text-muted" href="{#% url 'trains:train_delete' object.pk %#}">Удалить</a></li>
+      </ul>
+    </div>
+
+{% endblock Body %}

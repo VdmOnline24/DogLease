@@ -9,6 +9,7 @@ from dgls.models import Dogs
 
 __all__=[
     'DogsListView',
+    'DogDetailView',
 ]
 
 
@@ -17,4 +18,8 @@ class DogsListView(ListView):
     paginate_by = 8
     model = Dogs
     template_name = 'dgls/dogs.html'
+
+class DogDetailView(DetailView):
+    queryset = Dogs.objects.all()
+    template_name = 'dgls/dog_detail.html'
 
