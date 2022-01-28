@@ -22,7 +22,7 @@ class Cars(models.Model):
     crs_drive_21=models.PositiveIntegerField(null=False,blank=False, default=0, verbose_name='Пробег 2021')
     crs_drive_22 = models.PositiveIntegerField(null=False,blank=False, default=0, verbose_name='Пробег 2022')
     crs_odo_01_km = models.PositiveIntegerField(null=False,blank=False, default=0, verbose_name='Показание одометра №1')
-    crs_odo_01_date = models.DecimalField(null=True,blank=True, max_length=11, max_digits=11, decimal_places=2, verbose_name='Площадь кв.м.')
+    crs_odo_01_date = models.DateField (null=True,blank=True,verbose_name='Дата одометража 1')
     crs_ssp = models.CharField( null=True, blank=True, max_length=512, unique=False,verbose_name='ССП')
     crs_sop = models.CharField(null=True, blank=True, max_length=512, unique=False, verbose_name='Ответственный пользователь')
     crs_note = models.TextField(null=True, blank=True, unique=False, verbose_name='Заметки')

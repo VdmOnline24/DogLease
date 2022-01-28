@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block Title %}
+
+    {{ object.crs_gosnom }}
+
+{% endblock Title %}
+
+{% block Body %}
+    <br/>
+    <p class="lead">
+         Автомобиль: {{ object.crs_gosnom }}
+    </p>
+
+        <div class="col-md fw-light">
+                <p> <small class="text-muted">Модель:</small> {{ object.crs_model }}</p>
+                <p> <small class="text-muted">Год выпуска:</small> {{ object.crs_year }}</p>
+                <p> <small class="text-muted">VIN:</small> {{ object.crs_vin }}</p>
+                <p> <small class="text-muted">Закреплен за ССП:</small> {{ object.crs_ssp }}</p>
+                <p> <small class="text-muted">Ответственный СОП:</small> {{ object.crs_sop }}</p>
+                <p> <small class="text-muted">Пробег по состоянию на {{ object.crs_odo_01_date|date:"Y-m-d" }}:</small> {{ object.crs_odo_01_km|intcomma }}</p>
+                <p> <small class="text-muted">Пробег в 2021 году:</small> {{ object.crs_drive_21|intcomma }}</p>
+                <p> <small class="text-muted">Заметки:</small> {{ object.crs_note }}</p>
+
+        </div>
+
+    <hr>
+    <div class="dropdown">
+      <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        Выберите действие
+      </a>
+
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <li><a class="dropdown-item" href="{% url 'cars_list' %}">Назад к списку</a></li>
+        <li><a class="dropdown-item text-muted" href="{#% url 'trains:train_update' object.pk %#}">Изменить</a></li>
+        <li><a class="dropdown-item text-muted" href="{#% url 'trains:train_create' %#}">Создать</a></li>
+        <li><a class="dropdown-item bg-danger text-light text-muted" href="{#% url 'trains:train_delete' object.pk %#}">Удалить</a></li>
+      </ul>
+    </div>
+
+{% endblock Body %}

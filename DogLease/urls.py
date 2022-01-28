@@ -18,10 +18,13 @@ from django.contrib import admin
 from django.urls import path
 from DogLease.views import *
 from dgls.views import *
+from crs.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', homepagefunc, name= 'FirstPage'),
     path('dogs/', DogsListView.as_view(), name='DogsPage'),
     path('dogs/detail/<int:pk>/', DogDetailView.as_view(), name='dog_detail'),
+    path('cars/',CarsListView.as_view(), name='cars_list'),
+    path('cars/detail/<int:pk>/', CarDetailView.as_view(), name='car_detail'),
 ]

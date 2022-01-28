@@ -20,3 +20,17 @@ def days_color(value):
 
     else:
         return 'table-secondary'
+
+@register.filter(name='drive_color')
+def drive_color(value):
+    if isinstance(value, int):
+
+        if value > 30000:
+            return 'table-danger'
+        elif value > 20000:
+            return 'table-warning'
+        else:
+            return 'table-light'
+
+    else:
+        return 'table-secondary'

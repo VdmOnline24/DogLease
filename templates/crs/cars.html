@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load my_filters %}
+
+
+{% block Title %}
+
+    Автомобили
+
+{% endblock Title %}
+
+{% block Body %}
+<br/>
+<p class="lead">
+  Список автомобилей
+</p>
+
+
+        <div class="table-responsive col-md-8">
+
+            <table class="table align-middle">
+                <thead>
+
+                <tr class="lead text-start">
+                    <td class=""></td>
+                    <td class="text-center">Марка</td>
+                    <td class="text-end">Госномер</td>
+                    <td class="text-center">ССП</td>
+                    <td class="text-start">СОП</td>
+
+                </tr>
+                </thead>
+                <tbody class="fw-light">
+                {% for zapis in page_obj %}
+                    <tr class="{{ zapis.crs_drive_21|drive_color}}">
+                        <td class="col-md-1">
+                            <a href="{% url 'car_detail' pk=zapis.id %}">
+                                <button type="button" class="btn btn-outline-primary justify-content-center">
+                                    &#x2630;
+                                </button>
+                            </a>
+
+                        </td>
+                        <td class="col-md-1 text-center">
+                            <small>
+                             {{ zapis.crs_model }}
+                            </small>
+                        </td>
+                        <td class="col-md-1 text-end">
+                            <small>
+                                {{ zapis.crs_gosnom }}
+                            </small>
+                        </td>
+                        <td class="col-md-2 text-center">
+                            <small>
+                                {{ zapis.crs_ssp }}
+
+                            </small>
+                        </td>
+                        <td class="col-md-2">
+                            <span class="d-inline-block text-truncate" style="max-width: 160px;">
+                                <small>
+                                    {{ zapis.crs_sop }}
+                                </small>
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+<!-- Pagination Controls from the Django Doc -->
+
+<!-- Pagination controls from Getbootstrap.com -->
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-left">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+        {% endif %}
+        {% for page in page_obj.paginator.page_range %}
+            {% if page == page_obj.number %}
+                <li class="page-item active" aria-current="page">
+            {% else %}
+                <li class="page-item">
+            {% endif %}
+
+                    <a class="page-link" href="?page={{ page }}">
+                        {{ page }}
+                    </a>
+                </li>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+        {% endif %}
+      </ul>
+    </nav>
+    <!-- Форма -->
+
+
+
+{% endblock Body %}
